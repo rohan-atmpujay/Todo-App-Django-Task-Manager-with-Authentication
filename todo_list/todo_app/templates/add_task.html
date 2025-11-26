@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .form-container {
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background: #fafafa;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .input-field {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .btn-save {
+        background-color: #28a745;   /* green */
+        width: 100%;
+    }
+
+    .btn-back {
+        background-color: #6c757d;   /* grey */
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Add Task</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        <input type="text" name="task" placeholder="Task name" required class="input-field">
+        
+        <input type="text" name="description" placeholder="Description" required class="input-field">
+        
+        <input type="date" name="last_date" required class="input-field">
+
+        <button type="submit" class="btn btn-save">Save Task</button>
+    </form>
+
+    <a href="{% url 'home' %}">
+        <button type="button" class="btn btn-back">Back</button>
+    </a>
+</div>
+
+{% endblock %}

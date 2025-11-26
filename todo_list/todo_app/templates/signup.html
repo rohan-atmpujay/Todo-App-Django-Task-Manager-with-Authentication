@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .form-container {
+        max-width: 400px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background: #fafafa;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .input-field {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        color: white;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .btn-signup {
+        background-color: #28a745;   /* green */
+    }
+
+    .login-link {
+        display: block;
+        text-align: center;
+        margin-top: 15px;
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .login-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Signup</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.username.label_tag }}
+        <input type="text" name="username" class="input-field" required>
+
+        {{ form.password1.label_tag }}
+        <input type="password" name="password1" class="input-field" required>
+
+        {{ form.password2.label_tag }}
+        <input type="password" name="password2" class="input-field" required>
+
+        <button type="submit" class="btn btn-signup">Sign Up</button>
+    </form>
+
+    <a href="{% url 'login' %}" class="login-link">Already have an account? Login</a>
+</div>
+
+{% endblock %}

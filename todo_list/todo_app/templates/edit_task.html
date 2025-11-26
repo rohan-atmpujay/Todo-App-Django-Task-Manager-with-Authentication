@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .form-container {
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background: #fafafa;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .input-field {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        color: white;
+        width: 100%;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-save {
+        background-color: #007bff;   /* blue */
+        margin-bottom: 10px;
+    }
+
+    .btn-back {
+        background-color: #6c757d;
+        margin-top: 15px;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Edit Task</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input class="input-field" type="text" name="task" value="{{ task.task }}" required>
+
+        <input class="input-field" type="text" name="description" value="{{ task.description }}" required>
+
+        <input class="input-field" type="date" name="last_date" value="{{ task.last_date|date:'Y-m-d' }}" required>
+
+        <button type="submit" class="btn btn-save">Save Changes</button>
+    </form>
+
+    <a href="{% url 'home' %}" class="btn btn-back">Back</a>
+</div>
+
+{% endblock %}
