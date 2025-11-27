@@ -51,6 +51,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = "todo_list.urls"
@@ -138,3 +139,6 @@ LOGIN_URL = '/login/'
 
 # Added manually
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Added maunally
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
